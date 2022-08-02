@@ -1,0 +1,18 @@
+version: '3.8'
+
+services: 
+    app:
+      build:
+        context: ./retobase-nodejs-master
+        dockerfile: Dockerfile
+      container_name: andreinode_1
+          
+    nginx:
+      image: nginx
+      container_name: andreiweb
+      ports:
+        - "80:80"
+      volumes: 
+        - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      depends_on:
+        - app
